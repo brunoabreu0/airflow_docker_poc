@@ -16,6 +16,7 @@ COPY plugins ${AIRFLOW_HOME}/plugins
 COPY dags /dags
 RUN mkdir ${AIRFLOW_HOME}/dags
 
+RUN groupadd airflow
 RUN chown -R airflow:airflow ${AIRFLOW_HOME}
 RUN chmod 777 -R /dags
 
