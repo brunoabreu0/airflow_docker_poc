@@ -5,7 +5,7 @@ ENV AIRFLOW_HOME=/usr/local/airflow
 USER root
 
 #configs
-COPY config/entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 #COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
@@ -22,7 +22,7 @@ RUN chmod 777 -R /dags
 USER airflow
 
 #requirements
-COPY config/requirements.txt .
+COPY requirements.txt .
 RUN pip install --user --no-cache-dir -r requirements.txt
 
 
