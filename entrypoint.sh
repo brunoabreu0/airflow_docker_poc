@@ -3,8 +3,6 @@
 # copy files in EFS volume
 cp -R /dags/* /usr/local/airflow/dags/
 
-sudo yum -y install jq
-
 get_param() {
     P=$(aws ssm get-parameter --name "$1" | jq -r '.Parameter.Value')
     echo "$P"
