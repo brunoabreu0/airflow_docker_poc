@@ -7,8 +7,7 @@ cp -R /dags/* /usr/local/airflow/dags/
 #the previous parameter in command container
 case "$1" in
   webserver)
-        airflow db reset \
-        && airflow db init \
+        airflow db init \
         && airflow users create \
         --role Admin \
         --username "$(aws ssm get-parameter --name airflow_user)" \
