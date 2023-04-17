@@ -17,7 +17,7 @@ get_secret() {
 #the previous parameter in command container
 case "$1" in
   webserver)
-        airflow users delete --username "$(get_param airflow_user)" \
+        airflow db init \
         && airflow users create \
         --role Admin \
         --username "$(get_param airflow_user)" \
