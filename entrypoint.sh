@@ -3,6 +3,18 @@
 # copy files in EFS volume
 cp -R /dags/* /usr/local/airflow/dags/
 
+sudo yum -y install jq
+
+get_param() {
+    P=$(aws ssm get-parameter --name "$1" | jq -r '.Parameter.Value')
+    echo "$P"
+}
+
+get_secret() {
+    S=$(aws secretsmanager get-secret-value --secret-id "$1" | jq -r '.SecretString')
+    echo "$S"
+}
+
 # start Airflow service as per
 #the previous parameter in command container
 case "$1" in
@@ -10,9 +22,9 @@ case "$1" in
         airflow db init \
         && airflow users create \
         --role Admin \
-        --username "$(aws ssm get-parameter --name airflow_user)" \
+        --username "$(get_param airflow_user)" \
         --password "$(aws secretsmanager get-secret-value --secret-id airflow_password_secret_key)" \
-        --email "$(aws ssm get-parameter --name airflow_email)" \
+        --email "$(get_param airflow_email)" \
         --firstname airflow \
         --lastname airflow
 		sleep 5
