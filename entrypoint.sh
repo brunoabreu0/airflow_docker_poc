@@ -17,11 +17,11 @@ get_secret() {
 #the previous parameter in command container
 case "$1" in
   webserver)
-        airflow db init \
+        airflow users delete --username "$(get_param airflow_user)" \
         && airflow users create \
         --role Admin \
         --username "$(get_param airflow_user)" \
-        --password "$(aws secretsmanager get-secret-value --secret-id airflow_password_secret_key)" \
+        --password "$(get_secret airflow_password_secret_key)" \
         --email "$(get_param airflow_email)" \
         --firstname airflow \
         --lastname airflow
