@@ -17,7 +17,7 @@ folders = ['dags', 'planning', 'quality']
 with DAG(dag_id='dags_sync',
          default_args=args,
          schedule_interval='*/5 * * * *',
-         tags=['example'],
+         tags=['system'],
          catchup=False,
          is_paused_upon_creation=False) as dag:
     tasks = BashOperator(task_id="sync_s3",
