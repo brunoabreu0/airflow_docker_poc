@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# setup EFS volume directories
+mkdir -p /usr/local/airflow/dags/data/airflow
+chmod 777 /usr/local/airflow/dags/data
+chmod 777 /usr/local/airflow/dags/data/airflow
+
 # copy files in EFS volume
 cp -R /dags/* /usr/local/airflow/dags/
 
