@@ -26,7 +26,7 @@ case "$1" in
         && airflow users create \
         --role Admin \
         --username "$(get_param airflow_user)" \
-        --password "$(get_secret airflow_password_secret_key)" \
+        --password "$(get_secret airflow_pass)" \
         --email "$(get_param airflow_email)" \
         --firstname airflow \
         --lastname airflow
