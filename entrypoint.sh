@@ -18,8 +18,9 @@ get_secret() {
     echo "$S"
 }
 
-# set main sync DAG variable airflow_bucket_dags
-export AIRFLOW_VAR_AIRFLOW_BUCKET_DAGS=/usr/local/airflow/dags/data/airflow
+# set main sync DAG variables
+export AIRFLOW_VAR_AIRFLOW_BUCKET_DAGS=airflow-dags-6e8f7c8s
+export AIRFLOW_VAR_AIRFLOW_HOME_DAGS=/usr/local/airflow/dags/data/airflow
 
 # start Airflow service as per
 #the previous parameter in command container
